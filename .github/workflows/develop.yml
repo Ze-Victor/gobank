@@ -25,19 +25,19 @@ jobs:
           go-version: '1.21.1'
 
       - name: Resolve dependencies
-        run: go mod tidy
+        run: make dependencies
         working-directory: ./server
 
       - name: Build
-        run: go build -o build api/main.go
+        run: make build
         working-directory: ./server
 
       - name: Test
-        run: go test -v ./...
+        run: make test
         working-directory: ./server
 
       - name: Tag creation
         run: |
-          TAG="build-$(date +'%m%d%Y%H%M%S')"
+          TAG="build-$(date +'%d-%m-%Y_%H-%M-%S')"
           git tag $TAG
           git push origin $TAG
