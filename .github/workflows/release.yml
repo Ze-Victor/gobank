@@ -32,7 +32,7 @@ jobs:
         working-directory: ./server
 
       - name: Quality
-        run: golangci-lint run
+        run: make lint
         working-directory: ./server
 
       - name: Test
@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: $(echo $GITHUB_REF | awk -F'/' '{print $3}').zip
-          path: ./server/$(APP_NAME).zip
+          path: ./server/gobank-dev.zip
